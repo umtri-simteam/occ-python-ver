@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
-# Load the data from the file
+# Load the data from the file, change path here
 file_path = 'script_out.txt'
 data = pd.read_csv(file_path, header=None, names=['Values'])
 
