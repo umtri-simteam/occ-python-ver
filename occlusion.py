@@ -74,7 +74,7 @@ def turn_black_stackable():
 def on_key_event(event):
     global pre_duration, count, f, timer, start, end, left_time, nextduration, start_of_sequence, count_acc
     if event.name == 'space':
-        if (not if_stackable):
+        if (if_stackable):
             if timer:
                 timer.cancel()
             black_screen.withdraw()  # Make screen visible when space is pressed
