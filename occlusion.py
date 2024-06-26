@@ -6,13 +6,15 @@ from threading import Timer
 
 parser = argparse.ArgumentParser(description=" ")
 parser.add_argument('-t', type=float, default=0.5000, help="Occolusion Time")
-parser.add_argument('-s', type=bool, default=1, help="Mode(Stackable or not)")
-parser.add_argument('-a', type=bool, default=1, help="Mode(Adaptive or not)")
+parser.add_argument('-s', type=int, default=1, help="Mode(Stackable or not)")
+parser.add_argument('-a', type=int, default=1, help="Mode(Adaptive or not)")
 args = parser.parse_args()
 pre_duration = args.t
 if_stackable = args.s
 if_adaptive = args.a
-
+print(args.a)
+print(args.s)
+print(args.t)
 # change path here
 PATH_BASE = "C:\\Users\\chenww\\Desktop\\"
 PATH_STACKTABLE_AND_ADPATIVE = PATH_BASE + "out_python_stackable_and_adaptive.txt"
@@ -32,6 +34,8 @@ if (not if_adaptive) and if_stackable:
 
 if (not if_adaptive) and (not if_stackable):
     PATH = PATH_NONSTACKTABLE_AND_NONADPATIVE
+
+print(PATH)
 
 f = open(PATH, 'w')
 count = 1
@@ -55,6 +59,7 @@ def turn_black_non_stackable():
     end = time.time()
     if if_adaptive:
         pre_duration = pre_duration - (end - start - args.t)
+    
     f.write(str(end - start) + "\n")
     print(count)
     count += 1
@@ -66,7 +71,7 @@ def turn_black_stackable():
     end = time.time()
     if if_adaptive:
         pre_duration = pre_duration - ((end - start_of_sequence)/count_acc - args.t)
-    sleft_time = pre_duration
+    left_time = pre_duration
     f.write(str((end - start_of_sequence)/count_acc) + "\n")
     black_screen.deiconify()
     count_acc = 1
@@ -74,7 +79,7 @@ def turn_black_stackable():
 def on_key_event(event):
     global pre_duration, count, f, timer, start, end, left_time, nextduration, start_of_sequence, count_acc
     if event.name == 'space':
-        if (if_stackable):
+        if (not if_stackable):
             if timer:
                 timer.cancel()
             black_screen.withdraw()  # Make screen visible when space is pressed
