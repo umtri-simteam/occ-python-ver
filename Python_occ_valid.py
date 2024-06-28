@@ -16,7 +16,7 @@ data = pd.read_csv(file_path, header=None, names=['Values'])
 # file_path = file_path.replace(".txt", "")
 
 # Multiply data values by 1000
-data['Values'] = data['Values'] * 1000
+data['Values'] = data['Values'][0:1069] * 1000
 
 # Calculate statistics
 statistics = {
