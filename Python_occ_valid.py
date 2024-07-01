@@ -44,8 +44,8 @@ y_max = mean_value + 3 * std_dev
 # Plot the data with adjusted y-axis range
 plt.figure(figsize=(10, 6))
 plt.bar(range(len(data)), data['Values'])
-plt.xlabel('Index')
-plt.ylabel('Values (mm)')
+plt.xlabel('Index', fontsize=20)
+plt.ylabel('Values (mm)', fontsize=20)
 # plt.title('Bar Plot of Data Values')
 plt.ylim(y_min, y_max)
 plt.axhline(mean_value, color='red', linestyle='--', label='Mean')
